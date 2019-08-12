@@ -1,13 +1,11 @@
 FROM python:3
 
-ADD requirements.txt /app/requirements.txt
-
 WORKDIR /app/
 
-RUN pip install pipenv
+COPY requirements.txt .
 
-RUN pipenv install
+RUN pip install -r requirements.txt
 
-ENTRYPOINT ["python"]
+COPY . .
 
-CMD ["./app.py", "--host=0.0.0.0"]
+CMD ["python", "app.py", "--host=0.0.0.0"]

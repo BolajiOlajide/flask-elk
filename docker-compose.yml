@@ -45,3 +45,15 @@ services:
       - rabbit
     depends_on:
       - rabbit
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    container_name: elasticsearch
+    ports:
+        - "9200:9200"
+        - "9300:9300"
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.4.0
+    container_name: logstash
+    volumes:
+        - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    depends_on: ['elasticsearch']

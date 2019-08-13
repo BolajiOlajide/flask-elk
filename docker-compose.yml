@@ -25,8 +25,7 @@ services:
     build:
       context: .
     hostname: worker_1
-    entrypoint: celery
-    command: -A workerA worker --loglevel=info -Q workerA
+    command: celery -A workerA worker --loglevel=info -Q workerA
     volumes:
       - .:/app
     links:
@@ -49,11 +48,11 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
     container_name: elasticsearch
     ports:
-        - "9200:9200"
-        - "9300:9300"
+      - "9200:9200"
+      - "9300:9300"
   logstash:
     image: docker.elastic.co/logstash/logstash:6.4.0
     container_name: logstash
     volumes:
-        - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     depends_on: ['elasticsearch']

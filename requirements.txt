@@ -3,4 +3,4 @@ celery==4.3.0
 celstash==0.1.0
 elasticsearch==7.0.2
 elasticsearch-dsl==7.0.0
-Flask==1.1.1
+Flask==2.2.5
